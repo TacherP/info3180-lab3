@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h1 class="title"> Contact Form </h1>
+
+<hr>
+    <div class="comment">
+        <p>  Fill in this form to contact the site owners  </p>
+    </div>  
+      
+   {% if error %}
+
+     <p class="error"><strong>Error:</strong> {{ error }}</p>
+  
+   {% endif %}
+
+    
+    <form method="POST" action="{{ url_for('contact') }}" novalidate>
+        {{ form.csrf_token }}
+        <div class = "container"> 
+            <div class="MyForm">
+                {{ form.name.label(class="form-label") }} 
+                <p class = "mytext"> Please enter your full name  </p>
+                {{ form.name(class="form-control") }}  
+            </div>
+            <div class="MyForm">
+                {{ form.email.label(class="form-label") }} 
+                <p class = "mytext"> Please enter your e-mail address  </p>
+                {{ form.email(class="form-control", placeholder="tacher1234@example.com") }}
+            </div>
+            <div class="MyForm">
+                {{ form.subject.label(class="form-label") }} 
+                <p class = "mytext"> Please enter the subject for your message. </p>
+                {{ form.subject(class="form-control") }}
+            </div>
+            <div class="MyForm">
+                {{ form.message.label(class="form-label") }} 
+                <p class = "mytext"> Please enter the message you would like to send. </p>
+                {{ form.message(class="form-control", rows="3") }}
+            </div>
+           
+        </div>    
+         <button type="submit" class="btn-primary">Send</button>
+    </form>
+
+{% endblock %}
